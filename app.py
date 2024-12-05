@@ -6,6 +6,7 @@ import numpy as np
 import os
 from werkzeug.utils import secure_filename
 
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 app = Flask(__name__)
 
 # Configure upload folder and allowed extensions
