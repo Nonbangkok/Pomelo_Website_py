@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classification Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Classification Result</h1>
+        <img src="{{ url_for('display_image', filename=filename) }}" alt="Uploaded Image">
+        <h2>The image is classified as: <span style="color: #007bff;">{{ prediction }}</span></h2>
+        <a href="{{ url_for('upload_and_classify') }}">Classify Another Image</a>
+    </div>
+</body>
+</html>
