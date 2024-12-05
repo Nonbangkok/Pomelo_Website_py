@@ -123,8 +123,6 @@ pydeck==0.9.1
 pydub==0.25.1
 pyglet==2.0.18
 Pygments==2.18.0
-pyobjc-core==10.3.1
-pyobjc-framework-Cocoa==10.3.1
 pyparsing==3.2.0
 PyPDF2==3.0.1
 pyrr==0.10.3
