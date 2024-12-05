@@ -7,6 +7,7 @@ import os
 from werkzeug.utils import secure_filename
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 app = Flask(__name__)
 
 # Configure upload folder and allowed extensions
@@ -60,4 +61,5 @@ def display_image(filename):
     return redirect(url_for('static', filename='uploads/' + filename), code=301)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))  # Render uses the PORT env variable
+    app.run(host='0.0.0.0', port=port)
