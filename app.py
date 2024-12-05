@@ -47,13 +47,22 @@ def upload_and_classify():
             filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file.save(filepath)
 
-            # Preprocess the image and make prediction
-            image = preprocess_image(filepath)
-            prediction = model.predict(image)
-            # Assuming binary classification and sigmoid activation
-            prediction_class = 'Diseased' if prediction[0][0] < 0.5 else 'Good'
+            try:
+                # Preprocess the image and make prediction
+                image = preprocess_image(filepath)
+                prediction = model.predict(image)
+                # Assuming binary classification and sigmoid activation
+                prediction_class = 'Diseased' if prediction[0][0] < 0.5 else 'Good'
 
-            return render_template('result.html', filename=filename, prediction=prediction_class)
+                # Remove the image after prediction
+                os.remove(filepath)
+
+                return render_template('result.html', filename=filename, prediction=prediction_class)
+            except Exception as e:
+                # Handle errors and clean up the file if needed
+                os.remove(filepath)
+                return f"An error occurred: {str(e)}", 500
+
     return render_template('index.html')
 
 @app.route('/display/<filename>')
